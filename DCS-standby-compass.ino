@@ -54,7 +54,7 @@ class Vid60Stepper : public DcsBios::Int16Buffer {
       if (initState == 0) { // not initialized yet
         pinMode(irDetectorPin, INPUT);
         stepper.setMaxSpeed(stepperConfig.maxSpeed);
-        stepper.setSpeed(200);
+        stepper.setSpeed(600);
         
         initState = 1;
       }
@@ -142,7 +142,7 @@ struct StepperConfig stepperConfig = {
 
 #define MOTOR_STEP_PIN 2
 #define MOTOR_DIR_PIN 3 // if direction ends up backwards you can swap the wires that drive one 
-                        // coil of the motor, or try something like stepper.setPinsInverted( true ); in the setup method below
+                        // coil of the motor, or use stepper.setPinsInverted( true ); in the setup method below
 #define IR_DETECT_PIN 11
 
 // define AccelStepper instance
