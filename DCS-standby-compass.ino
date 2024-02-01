@@ -132,10 +132,12 @@ class Vid60Stepper : public DcsBios::Int16Buffer {
 /* define stepper parameters
    multiple Vid60Stepper instances can share the same StepperConfig object */
 struct StepperConfig stepperConfig = {
-  720,  // maxSteps - 720 seems to test well in the sim - if your motor turns too slow, 
-        // make sure you don't need to set any special pins on the driver, like MS1 or MS2 - I had to ground those
-  1000, // maxSpeed - not sure what this should really be, seems to work
-  10000 // acceleration - not sure what this should really be, seems to work
+  5760,  // maxSteps - 720*8 seems to test well in the sim - when I had 720 the motor would turn too slow, 
+         // b/c it is in 1/8 step mode by default - to get full step mode you have to set special pins 
+         // on the driver board, MS1 or MS2 - I had to ground those - but I ended up 
+         // staying in 1/8 mode and going with *8 max step count - 2 less wires to solder
+  8000, // maxSpeed - not sure what this should really be, seems to work
+  80000 // acceleration - not sure what this should really be, seems to work
   };
 
 #define MOTOR_STEP_PIN 2
