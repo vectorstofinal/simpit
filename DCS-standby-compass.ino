@@ -145,8 +145,8 @@ struct StepperConfig stepperConfig = {
                         // coil of the motor, or use stepper.setPinsInverted( true ); in the setup method below
 #define IR_DETECT_PIN 9
 
-#define READY_LED_PIN 6
-#define LATCHED_LED_PIN 7
+#define READY_LED_PIN 7
+#define LATCHED_LED_PIN 6
 #define DISCONNECT_LED_PIN 8
 
 // define AccelStepper instance
