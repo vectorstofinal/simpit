@@ -143,7 +143,7 @@ struct StepperConfig stepperConfig = {
 #define MOTOR_STEP_PIN 2
 #define MOTOR_DIR_PIN 3 // if direction ends up backwards you can swap the wires that drive one 
                         // coil of the motor, or use stepper.setPinsInverted( true ); in the setup method below
-#define IR_DETECT_PIN 11
+#define IR_DETECT_PIN 9
 
 // define AccelStepper instance
 AccelStepper stepper(AccelStepper::DRIVER, MOTOR_STEP_PIN, MOTOR_DIR_PIN);
@@ -162,6 +162,7 @@ Vid60Stepper vid60(          0x104c,          // address of stepper data - HSI H
 
 void setup() {
   DcsBios::setup();
+  stepper.setPinsInverted( true ); // i happened to wire the motor backwards
   pinMode(13, OUTPUT); // sets LED on the nano to be used?  Not sure this is used at all
 }
 
