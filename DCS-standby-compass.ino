@@ -145,6 +145,10 @@ struct StepperConfig stepperConfig = {
                         // coil of the motor, or use stepper.setPinsInverted( true ); in the setup method below
 #define IR_DETECT_PIN 9
 
+#define READY_LED_PIN 6
+#define LATCHED_LED_PIN 7
+#define DISCONNECT_LED_PIN 8
+
 // define AccelStepper instance
 AccelStepper stepper(AccelStepper::DRIVER, MOTOR_STEP_PIN, MOTOR_DIR_PIN);
 
@@ -159,6 +163,9 @@ Vid60Stepper vid60(          0x104c,          // address of stepper data - HSI H
   return map(newValue, 0, 65535, 0, stepperConfig.maxSteps-1);
 });
 
+DcsBios::LED airRefuelReady(0x1012, 0x8000, READY_LED_PIN);
+DcsBios::LED airRefuelLatched(0x1026, 0x0100, LATCHED_LED_PIN);
+DcsBios::LED airRefuelDisconnect(0x1026, 0x0200, DISCONNECT_LED_PIN);
 
 void setup() {
   DcsBios::setup();
@@ -169,5 +176,6 @@ void setup() {
 void loop() {
   PORTB |= (1<<5);
   PORTB &= ~(1<<5);
+
   DcsBios::loop();
 }
